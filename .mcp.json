@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "github": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/anthropic/anthropic-mcp-github",
+        "github-mcp-server"
+      ],
+      "env": {}
+    }
+  }
+}
