@@ -1,10 +1,11 @@
 # Netlifyビルド設定
 [build]
-  # ビルドコマンド
-  command = "cd energy-cxo-community && npm run build"
+  # ベースディレクトリ（プロジェクトのルート）
+  base = "energy-cxo-community"
+  # ビルドコマンド（npm installは自動実行される）
+  command = "npm run build"
   # 公開ディレクトリ（Next.jsのビルド出力）
-  publish = "energy-cxo-community/.next"
-  # Node.jsバージョン
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "20"
