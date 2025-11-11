@@ -1,0 +1,17 @@
+# Netlifyビルド設定
+[build]
+  # ビルドコマンド
+  command = "cd energy-cxo-community && npm run build"
+  # 公開ディレクトリ（Next.jsのビルド出力）
+  publish = "energy-cxo-community/.next"
+  # Node.jsバージョン
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Next.js用のリダイレクト設定
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false

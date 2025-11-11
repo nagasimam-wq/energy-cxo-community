@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/app/components/ui/button";
@@ -21,81 +21,154 @@ export default function HeroSection() {
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showOpening, setShowOpening] = useState(true);
+
+  useEffect(() => {
+    // オープニングを2.5秒表示した後、メインコンテンツへ
+    const openingTimer = setTimeout(() => {
+      setShowOpening(false);
+    }, 2500);
+
+    return () => clearTimeout(openingTimer);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // 5秒ごとに切り替え
+    }, 6000); // 6秒ごとに切り替え
 
     return () => clearInterval(interval);
   }, [images.length]);
 
+  // メインコピーを分割
+  const mainCopyLine1 = "エネルギー業界のCxOが";
+  const mainCopyLine2 = "学び、つながり、新たな価値を創出する場";
+
+  // テキストアニメーション用の設定
+  const textContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.03,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const textChild = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+      },
+    },
+  };
+
   return (
-    <section className="relative min-h-[600px] flex items-center justify-center text-white overflow-hidden">
-      {/* 画像背景 */}
-      <div className="absolute inset-0 overflow-hidden">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentImageIndex ? "opacity-100" : "opacity-0"
-            }`}
+    <section className="relative min-h-screen flex items-center justify-center text-white overflow-hidden">
+      {/* オープニングアニメーション */}
+      <AnimatePresence>
+        {showOpening && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="absolute inset-0 z-50 bg-gradient-to-br from-white via-gray-50 to-gray-100 flex items-start justify-center pt-32 md:pt-40"
           >
-            <div
-              key={`kenburns-${index}-${currentImageIndex === index ? Date.now() : index}`}
-              className={`w-full h-full ${index === currentImageIndex ? "kenburns-animation" : ""}`}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
             >
               <Image
-                src={image}
-                alt={`背景画像 ${index + 1}`}
+                src="/cxo_logo.png"
+                alt="エナジーCxO ロゴ"
                 fill
-                priority={index === 0}
-                className="object-cover"
-                sizes="100vw"
+                className="object-contain drop-shadow-2xl"
+                priority
               />
-            </div>
-          </div>
-        ))}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {/* 画像背景 - スムーズなクロスフェード */}
+      <div className="absolute inset-0 overflow-hidden">
+        <AnimatePresence mode="sync">
+          {images.map((image, index) => (
+            index === currentImageIndex && (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 1.1 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.05 }}
+                transition={{ duration: 2, ease: "easeInOut" }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={image}
+                  alt={`背景画像 ${index + 1}`}
+                  fill
+                  priority={index === 0}
+                  className="object-cover"
+                  sizes="100vw"
+                />
+              </motion.div>
+            )
+          ))}
+        </AnimatePresence>
         {/* オーバーレイ - グラデーション */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/85 via-blue-800/75 to-purple-900/85 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1a7fb8]/60 via-[#1a7fb8]/50 to-[#4db8e8]/55 z-10" />
       </div>
 
       {/* 装飾的なグロー効果 */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse" />
+      <div className="absolute inset-0 opacity-15 pointer-events-none z-20">
+        <div className="absolute top-20 left-10 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-white rounded-full blur-3xl animate-pulse" />
       </div>
 
-      <div className="container mx-auto px-4 py-20 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto space-y-8"
-        >
-          {/* メインコピー */}
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-            エネルギー業界のCxOが
-            <br />
-            学び、つながり、新たな価値を創出する場
-          </h1>
+      <div className="container mx-auto px-4 py-20 relative z-30">
+        <div className="text-center max-w-5xl mx-auto space-y-12">
+          {/* メインコピー - フェードイン */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+            className="space-y-4"
+          >
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight tracking-tight">
+              {mainCopyLine1}
+              <br />
+              {mainCopyLine2}
+            </h1>
+          </motion.div>
 
           {/* サブコピー */}
-          <p className="text-lg md:text-xl text-blue-50 max-w-3xl mx-auto">
-            エナジーCxOは、急激な市場変化に対応し、業界の未来を共に創る場です。
-          </p>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+            className="text-xl md:text-2xl lg:text-3xl text-white/95 max-w-4xl mx-auto font-light leading-relaxed"
+          >
+            エナジーCxOは、急激な市場変化に対応し、
+            <br className="hidden md:block" />
+            業界の未来を共に創る場です。
+          </motion.p>
 
           {/* CTAボタン */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            transition={{ duration: 1, delay: 0.9, ease: "easeOut" }}
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-4"
           >
             <Button
               asChild
               size="lg"
-              className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8 py-6"
+              className="bg-white text-[#1a7fb8] hover:bg-gray-50 hover:scale-105 transition-all text-xl px-12 py-8 font-semibold shadow-2xl"
             >
               <Link href="/join">入会案内を見る</Link>
             </Button>
@@ -103,7 +176,7 @@ export default function HeroSection() {
               asChild
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white/10 text-lg px-8 py-6"
+              className="border-2 border-white text-white hover:bg-white/15 hover:scale-105 transition-all text-xl px-12 py-8 font-semibold"
             >
               <Link href="/concept">もっと詳しく</Link>
             </Button>
@@ -111,36 +184,36 @@ export default function HeroSection() {
 
           {/* 参加費無料バッジ - グラスモーフィズム */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
             className="inline-block"
           >
-            <div className="glass-morphism-dark rounded-full px-6 py-2 shadow-lg">
-              <span className="text-sm font-semibold">✨ 参加費無料</span>
+            <div className="glass-morphism-dark rounded-full px-8 py-3 shadow-2xl">
+              <span className="text-base md:text-lg font-semibold">✨ 参加費無料</span>
             </div>
           </motion.div>
 
           {/* 統計情報 - グラスモーフィズム */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="grid grid-cols-3 gap-8 max-w-2xl mx-auto pt-8"
+            transition={{ duration: 1, delay: 1.5, ease: "easeOut" }}
+            className="grid grid-cols-3 gap-6 md:gap-10 max-w-3xl mx-auto pt-12"
           >
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
+                transition={{ duration: 0.6, delay: 1.6 + index * 0.1, ease: "easeOut" }}
                 className="text-center"
               >
-                <div className="glass-morphism-dark rounded-2xl p-6 hover:scale-105 transition-transform duration-300">
-                  <div className="text-3xl md:text-4xl font-bold mb-2">
+                <div className="glass-morphism-dark rounded-3xl p-6 md:p-8 hover:scale-105 hover:shadow-2xl transition-all duration-300">
+                  <div className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-3">
                     {stat.value}
                   </div>
-                  <div className="text-sm md:text-base text-blue-100">
+                  <div className="text-base md:text-lg text-white/90 font-medium">
                     {stat.label}
                   </div>
                 </div>
@@ -152,23 +225,23 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="flex justify-center gap-2 pt-8"
+            transition={{ duration: 0.8, delay: 1.9, ease: "easeOut" }}
+            className="flex justify-center gap-3 pt-12"
           >
             {images.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentImageIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                className={`h-1 rounded-full transition-all duration-500 ${
                   index === currentImageIndex
-                    ? "bg-white w-8"
-                    : "bg-white/50 hover:bg-white/70"
+                    ? "bg-white w-12"
+                    : "bg-white/40 hover:bg-white/60 w-8"
                 }`}
                 aria-label={`画像 ${index + 1} に切り替え`}
               />
             ))}
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

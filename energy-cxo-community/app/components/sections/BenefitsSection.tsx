@@ -115,7 +115,7 @@ export default function BenefitsSection() {
           </p>
         </motion.div>
 
-        {/* 特典カード（詳細版） */}
+        {/* 特典リスト（詳細版） */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
           {benefits.map((benefit, index) => (
             <motion.div
@@ -124,29 +124,30 @@ export default function BenefitsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="relative bg-white p-6 rounded-xl border-2 border-gray-100 hover:border-[#1a7fb8]/30 hover:shadow-xl transition-all duration-300"
             >
-              <Card className="h-full neo-shadow hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-none">
-                <CardContent className="p-6">
-                  <div className="w-14 h-14 gradient-blue-modern rounded-2xl flex items-center justify-center mb-4 shadow-lg">
-                    <benefit.icon className="w-7 h-7 text-white" />
-                  </div>
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-14 h-14 gradient-blue-modern rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0">
+                  <benefit.icon className="w-7 h-7 text-white" />
+                </div>
+                <div>
                   <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
-                  <p className="text-muted-foreground mb-4">
+                  <p className="text-muted-foreground text-sm">
                     {benefit.description}
                   </p>
-                  <ul className="space-y-2">
-                    {benefit.details.map((detail, detailIndex) => (
-                      <li
-                        key={detailIndex}
-                        className="flex items-start gap-2 text-sm"
-                      >
-                        <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                        <span>{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
+              <ul className="space-y-2 pl-2">
+                {benefit.details.map((detail, detailIndex) => (
+                  <li
+                    key={detailIndex}
+                    className="flex items-start gap-2 text-sm"
+                  >
+                    <CheckCircle2 className="w-4 h-4 text-[#1a7fb8] flex-shrink-0 mt-0.5" />
+                    <span>{detail}</span>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           ))}
         </div>
@@ -176,15 +177,15 @@ export default function BenefitsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative p-6 text-center bg-gradient-to-br from-[#1a7fb8]/5 to-[#4db8e8]/10 rounded-xl border border-[#1a7fb8]/20 hover:border-[#1a7fb8]/50 hover:shadow-lg transition-all duration-300"
               >
-                <Card className="h-full neo-shadow hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-none">
-                  <CardContent className="p-6 text-center">
-                    <h4 className="text-lg font-bold mb-3 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">{value.title}</h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {value.description}
-                    </p>
-                  </CardContent>
-                </Card>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-gradient-to-br from-[#1a7fb8] to-[#4db8e8] rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                  {index + 1}
+                </div>
+                <h4 className="text-lg font-bold mb-3 mt-4 bg-gradient-to-r from-[#1a7fb8] to-[#4db8e8] bg-clip-text text-transparent">{value.title}</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {value.description}
+                </p>
               </motion.div>
             ))}
           </div>

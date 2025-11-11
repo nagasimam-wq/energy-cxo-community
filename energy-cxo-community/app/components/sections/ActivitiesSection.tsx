@@ -66,7 +66,7 @@ export default function ActivitiesSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 max-w-6xl mx-auto">
           {activities.map((activity, index) => (
             <motion.div
               key={index}
@@ -74,18 +74,18 @@ export default function ActivitiesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="relative bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 group"
             >
-              <Card className="h-full neo-shadow hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-none">
-                <CardContent className="p-6 space-y-4">
-                  <div className="w-14 h-14 gradient-modern rounded-2xl flex items-center justify-center shadow-lg">
-                    <activity.icon className="w-7 h-7 text-white" />
-                  </div>
-                  <h3 className="text-xl font-semibold">{activity.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {activity.description}
-                  </p>
-                </CardContent>
-              </Card>
+              <div className="absolute inset-0 bg-gradient-to-br from-[#1a7fb8]/5 to-[#4db8e8]/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative space-y-4">
+                <div className="w-14 h-14 gradient-modern rounded-2xl flex items-center justify-center shadow-lg">
+                  <activity.icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold">{activity.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {activity.description}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -103,7 +103,7 @@ export default function ActivitiesSection() {
           </h3>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
@@ -111,21 +111,20 @@ export default function ActivitiesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="relative bg-white p-6 rounded-xl border-l-4 border-[#1a7fb8] shadow-md hover:shadow-xl transition-all duration-300"
             >
-              <Card className="h-full glass-morphism neo-shadow hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-none">
-                <CardContent className="p-6 space-y-4">
-                  <div className="text-4xl bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">"</div>
-                  <p className="text-muted-foreground italic leading-relaxed">
-                    {testimonial.quote}
+              <div className="space-y-4">
+                <div className="text-5xl bg-gradient-to-r from-[#1a7fb8] to-[#4db8e8] bg-clip-text text-transparent leading-none">"</div>
+                <p className="text-gray-700 italic leading-relaxed">
+                  {testimonial.quote}
+                </p>
+                <div className="pt-4 border-t border-gray-200">
+                  <p className="font-semibold text-gray-900">{testimonial.author}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {testimonial.company}
                   </p>
-                  <div className="pt-4 border-t border-blue-200/30">
-                    <p className="font-semibold">{testimonial.author}</p>
-                    <p className="text-sm text-muted-foreground">
-                      {testimonial.company}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>

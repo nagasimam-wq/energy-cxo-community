@@ -24,9 +24,11 @@ export default function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* ロゴ */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-              エナジーCxO
-            </div>
+            <img
+              src="/cxo_logo.png"
+              alt="エナジーCxO"
+              className="h-10 w-auto"
+            />
           </Link>
 
           {/* デスクトップナビゲーション */}
@@ -35,7 +37,7 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium transition-colors hover:text-blue-600"
+                className="text-sm font-medium transition-colors hover:text-primary"
               >
                 {item.name}
               </Link>
@@ -62,7 +64,7 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="block py-2 text-sm font-medium transition-colors hover:text-blue-600"
+                className="block py-2 text-sm font-medium transition-colors hover:text-primary"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}

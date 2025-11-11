@@ -63,7 +63,7 @@ export default function ConceptSection() {
           </p>
         </motion.div>
 
-        {/* 理念カード - グラスモーフィズム */}
+        {/* 理念 - 背景パターン付きセクション */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -71,18 +71,19 @@ export default function ConceptSection() {
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto mb-16"
         >
-          <Card className="glass-morphism neo-shadow border-none">
-            <CardContent className="p-8 md:p-12">
+          <div className="relative bg-pattern rounded-2xl overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1a7fb8]/95 via-[#1a7fb8]/90 to-[#4db8e8]/90" />
+            <div className="relative p-8 md:p-12 text-white">
               <p className="text-lg leading-relaxed text-center mb-6">
                 エナジーCxOは、太陽光・蓄電池・次世代エネルギー業界に携わるCxOが、
                 共に学び、知見を共有し、業界発展に寄与するための実践型コミュニティです。
               </p>
-              <p className="text-muted-foreground text-center leading-relaxed">
+              <p className="text-white/90 text-center leading-relaxed">
                 急激な市場変化に対応し、業界の未来を共に創る場として、
                 クローズドな環境で率直に議論し、具体的なビジネス機会を生み出しています。
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </motion.div>
 
         {/* なぜ今必要か */}
@@ -110,24 +111,19 @@ export default function ConceptSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="flex items-start gap-4 p-6 bg-white rounded-xl border border-gray-200 hover:border-[#1a7fb8]/50 hover:shadow-lg transition-all duration-300"
               >
-                <Card className="h-full neo-shadow hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-none">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
-                        <AlertCircle className="w-5 h-5 text-blue-600" />
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-semibold mb-2">
-                          {reason.title}
-                        </h4>
-                        <p className="text-muted-foreground text-sm">
-                          {reason.description}
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                <div className="w-10 h-10 rounded-full bg-[#4db8e8]/20 flex items-center justify-center flex-shrink-0">
+                  <AlertCircle className="w-5 h-5 text-[#1a7fb8]" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold mb-2">
+                    {reason.title}
+                  </h4>
+                  <p className="text-muted-foreground text-sm">
+                    {reason.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -139,14 +135,12 @@ export default function ConceptSection() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto"
           >
-            <Card className="glass-morphism neo-shadow border-none">
-              <CardContent className="p-6">
-                <p className="text-center leading-relaxed font-medium">
-                  これらの変化に対応するには、一社単独での情報収集では限界があります。
-                  業界のトップランナーが集い、率直に意見交換し、共に学ぶ場が必要です。
-                </p>
-              </CardContent>
-            </Card>
+            <div className="bg-gradient-to-r from-[#1a7fb8]/10 via-[#4db8e8]/10 to-[#1a7fb8]/10 border-l-4 border-[#1a7fb8] p-6 rounded-r-xl">
+              <p className="text-center leading-relaxed font-medium text-gray-800">
+                これらの変化に対応するには、一社単独での情報収集では限界があります。
+                業界のトップランナーが集い、率直に意見交換し、共に学ぶ場が必要です。
+              </p>
+            </div>
           </motion.div>
         </motion.div>
 
