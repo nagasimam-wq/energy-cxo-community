@@ -4,8 +4,8 @@
   base = "energy-cxo-community"
   # ビルドコマンド（npm installは自動実行される）
   command = "npm run build"
-  # 公開ディレクトリ（Next.jsのビルド出力）
-  publish = ".next"
+  # 公開ディレクトリ（Next.jsの静的エクスポート出力）
+  publish = "out"
 
 [build.environment]
   NODE_VERSION = "20"
