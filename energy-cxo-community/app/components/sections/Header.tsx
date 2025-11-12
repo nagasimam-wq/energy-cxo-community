@@ -12,7 +12,6 @@ export default function Header() {
     { name: "トップ", href: "/" },
     { name: "コンセプト", href: "/concept" },
     { name: "活動内容", href: "/activities" },
-    { name: "特典", href: "/benefits" },
     { name: "イベント", href: "/events" },
     { name: "FAQ", href: "/faq" },
     { name: "入会案内", href: "/join" },
@@ -42,9 +41,17 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
+            {/* 問合せボタン - 目立つデザイン */}
+            <Link
+              href="/contact"
+              className="px-5 py-2 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accent-light transition-all duration-300 shadow-md hover:shadow-lg"
+            >
+              問合せ
+            </Link>
+            {/* 会員ログイン - 目立つ色 */}
             <Link
               href="/login"
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors ml-4 underline decoration-primary/0 hover:decoration-primary/100 underline-offset-4"
+              className="text-sm font-semibold text-primary hover:text-accent transition-colors"
             >
               会員ログイン
             </Link>
@@ -73,7 +80,12 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            <Button asChild variant="default" className="w-full mt-4">
+            {/* 問合せボタン */}
+            <Button asChild className="w-full mt-4 bg-accent hover:bg-accent-light">
+              <Link href="/contact">問合せ</Link>
+            </Button>
+            {/* 会員ログイン */}
+            <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary/10">
               <Link href="/login">会員ログイン</Link>
             </Button>
           </nav>
