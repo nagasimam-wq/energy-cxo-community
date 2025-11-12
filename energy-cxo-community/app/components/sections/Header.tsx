@@ -37,14 +37,14 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 {item.name}
               </Link>
             ))}
             <Link
               href="/login"
-              className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors ml-4 underline decoration-primary/0 hover:decoration-primary/100 underline-offset-4"
+              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors ml-4 underline decoration-primary/0 hover:decoration-primary/100 underline-offset-4"
             >
               会員ログイン
             </Link>

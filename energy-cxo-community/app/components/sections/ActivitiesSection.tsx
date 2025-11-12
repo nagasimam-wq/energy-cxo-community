@@ -63,7 +63,7 @@ export default function ActivitiesSection() {
           <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
             主な活動内容
           </h2>
-          <p className="text-lg leading-relaxed text-foreground/70">
+          <p className="text-lg leading-relaxed text-muted-foreground">
             3つの柱で業界の未来を創る
           </p>
         </motion.div>
@@ -99,7 +99,7 @@ export default function ActivitiesSection() {
                   <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
                     {activity.title}
                   </h3>
-                  <p className="text-foreground/70 leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed">
                     {activity.description}
                   </p>
                 </div>
@@ -130,15 +130,15 @@ export default function ActivitiesSection() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="border-l-4 border-primary/30 pl-6 py-2"
               >
-                <p className="text-foreground/80 italic leading-relaxed mb-3">
+                <p className="text-foreground italic leading-relaxed mb-3">
                   「{testimonial.quote}」
                 </p>
                 <div className="flex items-center gap-2 text-sm">
                   <span className="font-semibold text-foreground">
                     {testimonial.author}
                   </span>
-                  <span className="text-foreground/50">·</span>
-                  <span className="text-foreground/60">{testimonial.company}</span>
+                  <span className="text-muted-foreground">·</span>
+                  <span className="text-muted-foreground">{testimonial.company}</span>
                 </div>
               </motion.div>
             ))}

@@ -53,7 +53,7 @@ export default function ConceptSection() {
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             エナジーCxOとは
           </h2>
-          <p className="text-lg text-foreground/70 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             エネルギー業界のCxOが学び、つながり、新たな価値を創出する実践型コミュニティ
           </p>
         </motion.div>
@@ -93,7 +93,7 @@ export default function ConceptSection() {
             <h3 className="text-xl md:text-2xl font-bold mb-4">
               なぜ今、エナジーCxOが必要なのか
             </h3>
-            <p className="text-foreground/70">
+            <p className="text-muted-foreground">
               エネルギー業界は、かつてない変革期を迎えています
             </p>
           </div>
@@ -115,7 +115,7 @@ export default function ConceptSection() {
                   <h4 className="text-lg font-semibold mb-2">
                     {reason.title}
                   </h4>
-                  <p className="text-foreground/70 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     {reason.description}
                   </p>
                 </div>
@@ -160,7 +160,7 @@ export default function ConceptSection() {
                     <div className="w-8 h-8 bg-white rounded-full" />
                   </div>
                   <h3 className="text-2xl font-bold mb-4">{value.title}</h3>
-                  <p className="text-foreground/70 leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed">
                     {value.description}
                   </p>
                 </div>

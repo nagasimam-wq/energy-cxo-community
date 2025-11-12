@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  /* 新しいコミュニティサイトカラーパレット */
-  --background: 210 43% 98%; /* #F9FBFD */
-  --foreground: 217 33% 17%; /* #1E293B */
+  /* 新しいコミュニティサイトカラーパレット - 視認性向上版 */
+  --background: 0 0% 100%; /* #FFFFFF - より明るく */
+  --foreground: 217 33% 15%; /* #0F172A - より濃く */
   --card: 0 0% 100%;
-  --card-foreground: 217 33% 17%;
+  --card-foreground: 217 33% 15%;
   --popover: 0 0% 100%;
-  --popover-foreground: 217 33% 17%;
+  --popover-foreground: 217 33% 15%;
   --primary: 203 100% 39%; /* #0072C6 */
   --primary-foreground: 0 0% 100%;
   --secondary: 210 20% 88%;
-  --secondary-foreground: 217 33% 17%;
-  --muted: 210 30% 95%;
-  --muted-foreground: 215 16% 47%;
+  --secondary-foreground: 217 33% 15%;
+  --muted: 210 30% 97%;
+  --muted-foreground: 217 25% 35%; /* より濃く */
   --accent: 28 80% 52%; /* #E67E22 */
   --accent-light: 33 85% 61%; /* #F0A54A */
   --accent-foreground: 0 0% 100%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
-  --border: 214 32% 91%;
-  --input: 214 32% 91%;
+  --border: 214 32% 88%;
+  --input: 214 32% 88%;
   --ring: 203 100% 39%;
   --radius: 0.375rem;
   --chart-1: 203 100% 39%;

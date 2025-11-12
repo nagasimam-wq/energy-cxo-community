@@ -49,7 +49,7 @@ export default function BenefitsSection() {
           <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
             会員になると得られること
           </h2>
-          <p className="text-lg leading-relaxed text-foreground/70">
+          <p className="text-lg leading-relaxed text-muted-foreground">
             ビジネスを加速させる6つの価値
           </p>
         </motion.div>
@@ -71,7 +71,7 @@ export default function BenefitsSection() {
                 </span>
                 {benefit.title}
               </h3>
-              <p className="text-foreground/70 leading-relaxed pl-11">
+              <p className="text-muted-foreground leading-relaxed pl-11">
                 {benefit.description}
               </p>
             </motion.div>
@@ -95,7 +95,7 @@ export default function BenefitsSection() {
               <h4 className="text-lg font-semibold text-foreground">
                 クローズドな環境
               </h4>
-              <p className="text-foreground/70 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 厳格な審査を経たCxOのみが参加するため、本音で語り合える信頼関係を構築できます。
               </p>
             </div>
@@ -104,7 +104,7 @@ export default function BenefitsSection() {
               <h4 className="text-lg font-semibold text-foreground">
                 実践的な内容
               </h4>
-              <p className="text-foreground/70 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 教科書的な知識ではなく、実際のビジネスに即座に活かせる具体的なノウハウを得られます。
               </p>
             </div>
@@ -113,7 +113,7 @@ export default function BenefitsSection() {
               <h4 className="text-lg font-semibold text-foreground">
                 継続的な学び
               </h4>
-              <p className="text-foreground/70 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 単発のイベントではなく、継続的に学び、つながり続けられるコミュニティです。
               </p>
             </div>
@@ -122,7 +122,7 @@ export default function BenefitsSection() {
               <h4 className="text-lg font-semibold text-foreground">
                 年会費無料
               </h4>
-              <p className="text-foreground/70 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 年会費無料。懇親会等の実費のみで、これだけの価値を得られるのは本コミュニティだけです。
               </p>
             </div>
