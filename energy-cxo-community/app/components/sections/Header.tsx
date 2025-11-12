@@ -41,17 +41,17 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            {/* 問合せボタン - 目立つデザイン */}
+            {/* 問合せボタン - 青背景に白文字 */}
             <Link
               href="/contact"
-              className="px-5 py-2 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accent-light transition-all duration-300 shadow-md hover:shadow-lg"
+              className="px-5 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 transition-all duration-300 shadow-md hover:shadow-lg"
             >
               問合せ
             </Link>
-            {/* 会員ログイン - 目立つ色 */}
+            {/* 会員ログイン - 青背景に白文字 */}
             <Link
               href="/login"
-              className="text-sm font-semibold text-primary hover:text-accent transition-colors"
+              className="px-5 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 transition-all duration-300 shadow-md hover:shadow-lg"
             >
               会員ログイン
             </Link>
@@ -80,12 +80,12 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            {/* 問合せボタン */}
-            <Button asChild className="w-full mt-4 bg-accent hover:bg-accent-light">
+            {/* 問合せボタン - 青背景に白文字 */}
+            <Button asChild className="w-full mt-4 bg-primary hover:bg-primary/90 text-white">
               <Link href="/contact">問合せ</Link>
             </Button>
-            {/* 会員ログイン */}
-            <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary/10">
+            {/* 会員ログイン - 青背景に白文字 */}
+            <Button asChild className="w-full bg-primary hover:bg-primary/90 text-white">
               <Link href="/login">会員ログイン</Link>
             </Button>
           </nav>
