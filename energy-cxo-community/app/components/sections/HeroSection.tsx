@@ -94,14 +94,10 @@ export default function HeroSection() {
             )
           ))}
         </AnimatePresence>
-        {/* オーバーレイ - 新しいカラーパレット */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/70 via-primary/60 to-primary/50 z-10" />
-      </div>
-
-      {/* 控えめなグロー効果 */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none z-20">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-white rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-white rounded-full blur-3xl" />
+        {/* オーバーレイ - より濃く */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/85 via-primary/75 to-primary/70 z-10" />
+        {/* 追加のダークオーバーレイで文字を目立たせる */}
+        <div className="absolute inset-0 bg-black/20 z-[11]" />
       </div>
 
       <div className="container mx-auto px-6 md:px-12 py-24 md:py-32 relative z-30">
@@ -113,7 +109,7 @@ export default function HeroSection() {
             transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
             className="space-y-4"
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight drop-shadow-lg">
               エネルギー業界のCxOが
               <br />
               学び、つながり、新たな価値を創出する場
@@ -125,48 +121,13 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-            className="text-lg md:text-xl lg:text-2xl text-white/95 max-w-3xl mx-auto font-light leading-relaxed"
+            className="text-lg md:text-xl lg:text-2xl text-white max-w-3xl mx-auto font-light leading-relaxed drop-shadow-md"
           >
             エナジーCxOは、急激な市場変化に対応し、
             <br className="hidden md:block" />
             業界の未来を共に創る場です。
           </motion.p>
 
-          {/* CTAボタン */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.9, ease: "easeOut" }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-4"
-          >
-            <Button
-              asChild
-              size="lg"
-              className="bg-white text-primary hover:bg-gray-50 hover:scale-105 transition-all text-xl px-12 py-8 font-semibold shadow-2xl"
-            >
-              <Link href="/join">入会案内を見る</Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-2 border-white text-white hover:bg-white/15 hover:scale-105 transition-all text-xl px-12 py-8 font-semibold"
-            >
-              <Link href="/concept">もっと詳しく</Link>
-            </Button>
-          </motion.div>
-
-          {/* 参加費無料バッジ - グラスモーフィズム */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
-            className="inline-block"
-          >
-            <div className="glass-morphism-dark rounded-full px-8 py-3 shadow-2xl">
-              <span className="text-base md:text-lg font-semibold">✨ 参加費無料</span>
-            </div>
-          </motion.div>
 
           {/* 統計情報 - グラスモーフィズム */}
           <motion.div

@@ -66,18 +66,15 @@ export default function ConceptSection() {
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto mb-16"
         >
-          <div className="relative bg-pattern rounded-2xl overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/90 to-primary/85" />
-            <div className="relative p-8 md:p-12 text-white">
-              <p className="text-lg leading-relaxed text-center mb-6">
-                エナジーCxOは、太陽光・蓄電池・次世代エネルギー業界に携わるCxOが、
-                共に学び、知見を共有し、業界発展に寄与するための実践型コミュニティです。
-              </p>
-              <p className="text-white/90 text-center leading-relaxed">
-                急激な市場変化に対応し、業界の未来を共に創る場として、
-                クローズドな環境で率直に議論し、具体的なビジネス機会を生み出しています。
-              </p>
-            </div>
+          <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-primary/10 rounded-2xl border-2 border-primary/20 p-8 md:p-12">
+            <p className="text-lg leading-relaxed text-center mb-6 text-foreground">
+              エナジーCxOは、太陽光・蓄電池・次世代エネルギー業界に携わるCxOが、
+              共に学び、知見を共有し、業界発展に寄与するための実践型コミュニティです。
+            </p>
+            <p className="text-muted-foreground text-center leading-relaxed">
+              急激な市場変化に対応し、業界の未来を共に創る場として、
+              クローズドな環境で率直に議論し、具体的なビジネス機会を生み出しています。
+            </p>
           </div>
         </motion.div>
 
