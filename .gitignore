@@ -47,3 +47,7 @@ coverage/
 
 # その他
 .serena/
+
+# Claude Code ローカル設定
+.claude/settings.local.json
+.mcp.json
