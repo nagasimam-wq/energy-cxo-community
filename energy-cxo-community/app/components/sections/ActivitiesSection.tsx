@@ -1,28 +1,30 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/app/components/ui/card";
-import { BookOpen, Users2, Mail } from "lucide-react";
+import Image from "next/image";
 
 export default function ActivitiesSection() {
   const activities = [
     {
-      icon: BookOpen,
-      title: "勉強会・セミナー",
+      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80",
+      category: "セミナー",
+      title: "経営者向け勉強会・セミナー",
       description:
-        "年間2〜4回開催。経営に直結する実践テーマを深掘りします。FIP戦略、AI活用、M&A戦略、蓄電池市場動向など。",
+        "年間2〜4回開催。FIP戦略、AI活用、M&A戦略、蓄電池市場動向など、経営に直結する実践テーマを深掘りします。",
     },
     {
-      icon: Users2,
+      image: "https://images.unsplash.com/photo-1560264280-88b68371db39?w=600&q=80",
+      category: "ネットワーキング",
       title: "交流・マッチング",
       description:
-        "少人数食事会、視察イベント、会員限定LINEでの交流、協業支援・マッチングを実施。",
+        "少人数食事会、視察イベント、会員限定LINEでの交流を通じて、業界トップクラスの経営者との深い関係性を築きます。",
     },
     {
-      icon: Mail,
+      image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80",
+      category: "情報配信",
       title: "会員限定情報配信",
       description:
-        "週1ニュース配信、マーケットレポート、イベント情報、資料アーカイブなど。",
+        "週1回のニュース配信、マーケットレポート、イベント情報、資料アーカイブなど、厳選された業界情報をお届けします。",
     },
   ];
 
@@ -48,25 +50,26 @@ export default function ActivitiesSection() {
   ];
 
   return (
-    <section className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section className="py-24 md:py-32 bg-background">
+      <div className="container mx-auto px-6 md:px-12 max-w-6xl">
         {/* 活動内容 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
             主な活動内容
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg leading-relaxed text-foreground/70">
             3つの柱で業界の未来を創る
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 max-w-6xl mx-auto">
+        {/* 記事リスト風レイアウト */}
+        <div className="space-y-8 mb-24">
           {activities.map((activity, index) => (
             <motion.div
               key={index}
@@ -74,60 +77,73 @@ export default function ActivitiesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 group"
+              className="group"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#1a7fb8]/5 to-[#4db8e8]/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="relative space-y-4">
-                <div className="w-14 h-14 gradient-modern rounded-2xl flex items-center justify-center shadow-lg">
-                  <activity.icon className="w-7 h-7 text-white" />
+              <div className="flex flex-col md:flex-row gap-6 pb-8 border-b border-gray-200 hover:border-primary/30 transition-colors duration-300">
+                {/* 画像 */}
+                <div className="relative w-full md:w-72 h-48 rounded-lg overflow-hidden flex-shrink-0">
+                  <Image
+                    src={activity.image}
+                    alt={activity.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  {/* カテゴリバッジ */}
+                  <div className="absolute top-3 left-3 bg-accent px-3 py-1 rounded-full text-white text-xs font-semibold">
+                    {activity.category}
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold">{activity.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {activity.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
 
-        {/* お客様の声 */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">
-            実際に参加されている経営者のコメント
-          </h3>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative bg-white p-6 rounded-xl border-l-4 border-[#1a7fb8] shadow-md hover:shadow-xl transition-all duration-300"
-            >
-              <div className="space-y-4">
-                <div className="text-5xl bg-gradient-to-r from-[#1a7fb8] to-[#4db8e8] bg-clip-text text-transparent leading-none">"</div>
-                <p className="text-gray-700 italic leading-relaxed">
-                  {testimonial.quote}
-                </p>
-                <div className="pt-4 border-t border-gray-200">
-                  <p className="font-semibold text-gray-900">{testimonial.author}</p>
-                  <p className="text-sm text-muted-foreground">
-                    {testimonial.company}
+                {/* コンテンツ */}
+                <div className="flex-1 flex flex-col justify-center">
+                  <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
+                    {activity.title}
+                  </h3>
+                  <p className="text-foreground/70 leading-relaxed">
+                    {activity.description}
                   </p>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* 参加者の声 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-24 pt-16 border-t-2 border-gray-200"
+        >
+          <h3 className="text-xl md:text-2xl font-bold mb-12 text-foreground">
+            実際に参加されている経営者のコメント
+          </h3>
+
+          <div className="space-y-8">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="border-l-4 border-primary/30 pl-6 py-2"
+              >
+                <p className="text-foreground/80 italic leading-relaxed mb-3">
+                  「{testimonial.quote}」
+                </p>
+                <div className="flex items-center gap-2 text-sm">
+                  <span className="font-semibold text-foreground">
+                    {testimonial.author}
+                  </span>
+                  <span className="text-foreground/50">·</span>
+                  <span className="text-foreground/60">{testimonial.company}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

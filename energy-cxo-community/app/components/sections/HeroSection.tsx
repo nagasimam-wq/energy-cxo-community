@@ -7,12 +7,6 @@ import { Button } from "@/app/components/ui/button";
 import { useState, useEffect } from "react";
 
 export default function HeroSection() {
-  const stats = [
-    { value: "50+", label: "参加企業" },
-    { value: "年4回", label: "セミナー" },
-    { value: "100%", label: "満足度" },
-  ];
-
   // 参考画像URL（高品質な無料画像を使用）
   const images = [
     "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=80", // 太陽光パネル
@@ -39,33 +33,6 @@ export default function HeroSection() {
 
     return () => clearInterval(interval);
   }, [images.length]);
-
-  // メインコピーを分割
-  const mainCopyLine1 = "エネルギー業界のCxOが";
-  const mainCopyLine2 = "学び、つながり、新たな価値を創出する場";
-
-  // テキストアニメーション用の設定
-  const textContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.03,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const textChild = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.4,
-      },
-    },
-  };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center text-white overflow-hidden">
@@ -95,6 +62,7 @@ export default function HeroSection() {
           </motion.div>
         )}
       </AnimatePresence>
+
       {/* 画像背景 - スムーズなクロスフェード */}
       <div className="absolute inset-0 overflow-hidden">
         <AnimatePresence mode="sync">
@@ -120,113 +88,62 @@ export default function HeroSection() {
             )
           ))}
         </AnimatePresence>
-        {/* オーバーレイ - グラデーション */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1a7fb8]/60 via-[#1a7fb8]/50 to-[#4db8e8]/55 z-10" />
+        {/* オーバーレイ - 新しいカラーパレット */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/70 via-primary/60 to-primary/50 z-10" />
       </div>
 
-      {/* 装飾的なグロー効果 */}
-      <div className="absolute inset-0 opacity-15 pointer-events-none z-20">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-white rounded-full blur-3xl animate-pulse" />
+      {/* 控えめなグロー効果 */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none z-20">
+        <div className="absolute top-20 left-10 w-96 h-96 bg-white rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-white rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 py-20 relative z-30">
-        <div className="text-center max-w-5xl mx-auto space-y-12">
-          {/* メインコピー - フェードイン */}
+      <div className="container mx-auto px-6 md:px-12 py-24 md:py-32 relative z-30">
+        <div className="text-center max-w-4xl mx-auto space-y-10">
+          {/* メインメッセージ - シンプルで知的に */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-            className="space-y-4"
+            className="space-y-6"
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight tracking-tight">
-              {mainCopyLine1}
-              <br />
-              {mainCopyLine2}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
+              変革期のエネルギー業界に<br className="hidden md:block" />必要な対話
             </h1>
           </motion.div>
 
-          {/* サブコピー */}
+          {/* サブコピー - 簡潔に */}
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-            className="text-xl md:text-2xl lg:text-3xl text-white/95 max-w-4xl mx-auto font-light leading-relaxed"
+            className="text-lg md:text-xl lg:text-2xl text-white/95 max-w-3xl mx-auto font-light leading-relaxed"
           >
-            エナジーCxOは、急激な市場変化に対応し、
-            <br className="hidden md:block" />
-            業界の未来を共に創る場です。
+            業界を超えた知見の共有と、未来を形作る実践的な議論の場
           </motion.p>
 
-          {/* CTAボタン */}
+          {/* CTAボタン - 1つだけ、柔らかい文言 */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.9, ease: "easeOut" }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-4"
+            className="flex justify-center items-center pt-8"
           >
             <Button
               asChild
               size="lg"
-              className="bg-white text-[#1a7fb8] hover:bg-gray-50 hover:scale-105 transition-all text-xl px-12 py-8 font-semibold shadow-2xl"
+              className="bg-white/95 text-primary hover:bg-white hover:shadow-xl transition-all text-lg px-10 py-6 font-medium rounded-md"
             >
-              <Link href="/join">入会案内を見る</Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-2 border-white text-white hover:bg-white/15 hover:scale-105 transition-all text-xl px-12 py-8 font-semibold"
-            >
-              <Link href="/concept">もっと詳しく</Link>
+              <Link href="/concept">コミュニティについて知る</Link>
             </Button>
           </motion.div>
 
-          {/* 参加費無料バッジ - グラスモーフィズム */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
-            className="inline-block"
-          >
-            <div className="glass-morphism-dark rounded-full px-8 py-3 shadow-2xl">
-              <span className="text-base md:text-lg font-semibold">✨ 参加費無料</span>
-            </div>
-          </motion.div>
-
-          {/* 統計情報 - グラスモーフィズム */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.5, ease: "easeOut" }}
-            className="grid grid-cols-3 gap-6 md:gap-10 max-w-3xl mx-auto pt-12"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.6 + index * 0.1, ease: "easeOut" }}
-                className="text-center"
-              >
-                <div className="glass-morphism-dark rounded-3xl p-6 md:p-8 hover:scale-105 hover:shadow-2xl transition-all duration-300">
-                  <div className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2 md:mb-3">
-                    {stat.value}
-                  </div>
-                  <div className="text-base md:text-lg text-white/90 font-medium">
-                    {stat.label}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* 画像インジケーター */}
+          {/* 画像インジケーター - 控えめに */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.9, ease: "easeOut" }}
-            className="flex justify-center gap-3 pt-12"
+            transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
+            className="flex justify-center gap-2 pt-16"
           >
             {images.map((_, index) => (
               <button
@@ -234,8 +151,8 @@ export default function HeroSection() {
                 onClick={() => setCurrentImageIndex(index)}
                 className={`h-1 rounded-full transition-all duration-500 ${
                   index === currentImageIndex
-                    ? "bg-white w-12"
-                    : "bg-white/40 hover:bg-white/60 w-8"
+                    ? "bg-white w-8"
+                    : "bg-white/30 hover:bg-white/50 w-6"
                 }`}
                 aria-label={`画像 ${index + 1} に切り替え`}
               />

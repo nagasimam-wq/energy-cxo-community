@@ -4,11 +4,55 @@
       "type": "stdio",
       "command": "uvx",
       "args": [
+        "mcp-server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": ""
+      }
+    },
+    "serena": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
         "--from",
-        "git+https://github.com/anthropic/anthropic-mcp-github",
-        "github-mcp-server"
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server",
+        "--context",
+        "ide-assistant",
+        "--project",
+        "C:/Users/user/Desktop/claude code/エナジーCxO"
       ],
       "env": {}
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@context7/mcp"
+      ],
+      "env": {}
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-playwright"
+      ],
+      "env": {}
+    },
+    "netlify": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@restackio/mcp-server-netlify"
+      ],
+      "env": {
+        "NETLIFY_AUTH_TOKEN": ""
+      }
     }
   }
 }

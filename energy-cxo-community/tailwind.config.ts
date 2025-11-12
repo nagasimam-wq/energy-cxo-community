@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'Noto Sans JP', 'system-ui', 'sans-serif'],
+        serif: ['Noto Serif JP', 'serif'],
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -34,6 +38,7 @@ const config: Config = {
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",
+          light: "hsl(var(--accent-light))",
           foreground: "hsl(var(--accent-foreground))",
         },
         destructive: {
@@ -55,6 +60,14 @@ const config: Config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      lineHeight: {
+        'relaxed': '1.7',
+        'loose': '1.8',
+      },
+      letterSpacing: {
+        'tight': '-0.01em',
+        'snug': '-0.005em',
       },
     },
   },

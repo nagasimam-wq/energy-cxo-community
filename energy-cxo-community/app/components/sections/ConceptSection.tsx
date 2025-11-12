@@ -1,180 +1,155 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/app/components/ui/card";
-import { Target, Users, TrendingUp, AlertCircle } from "lucide-react";
+import Image from "next/image";
 
 export default function ConceptSection() {
-  const values = [
-    {
-      icon: Target,
-      title: "学び",
-      description:
-        "最新の市場動向、技術トレンド、規制変更について、実践的な知見を共有し合います。",
-    },
-    {
-      icon: Users,
-      title: "つながり",
-      description:
-        "業界をリードする経営者同士の信頼関係を構築し、協業の可能性を探ります。",
-    },
-    {
-      icon: TrendingUp,
-      title: "価値創出",
-      description:
-        "得た知見と人脈を活かし、新たなビジネス機会を創出し、業界の発展に寄与します。",
-    },
-  ];
-
-  const reasons = [
-    {
-      title: "FIP制度導入",
-      description: "市場価格連動型の新制度への対応が急務",
-    },
-    {
-      title: "電力自由化の加速",
-      description: "競争激化と新規参入による市場変革",
-    },
-    {
-      title: "技術革新",
-      description: "AI、蓄電池、次世代エネルギー技術の急速な発展",
-    },
-    {
-      title: "規制環境の変化",
-      description: "カーボンニュートラル、RE100等の新たな要求",
-    },
-  ];
-
   return (
-    <section className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section className="py-24 md:py-32 bg-background">
+      <div className="container mx-auto px-6 md:px-12 max-w-6xl">
+        {/* イントロ */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-20"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            エナジーCxOとは
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-foreground">
+            変革期のエネルギー業界に必要な対話
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            エネルギー業界のCxOが学び、つながり、新たな価値を創出する実践型コミュニティ
-          </p>
+          <div className="prose prose-lg max-w-none">
+            <p className="text-lg leading-relaxed text-foreground/80 mb-6">
+              エナジーCxOは、太陽光・蓄電池・次世代エネルギー業界に携わる経営幹部のための実践型コミュニティです。
+              急激な市場変化に対応し、業界の未来を共に創る場として、クローズドな環境で率直に議論し、具体的なビジネス機会を生み出しています。
+            </p>
+            <p className="text-lg leading-relaxed text-foreground/80">
+              一社単独での情報収集では限界がある時代に、業界のトップランナーが集い、
+              知見を共有し、共に学ぶことで、変革の波を乗り越える力を育みます。
+            </p>
+          </div>
         </motion.div>
 
-        {/* 理念 - 背景パターン付きセクション */}
+        {/* 市場環境の変化 - 左右レイアウト */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto mb-16"
+          className="mb-24 pb-24 border-b border-border"
         >
-          <div className="relative bg-pattern rounded-2xl overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1a7fb8]/95 via-[#1a7fb8]/90 to-[#4db8e8]/90" />
-            <div className="relative p-8 md:p-12 text-white">
-              <p className="text-lg leading-relaxed text-center mb-6">
-                エナジーCxOは、太陽光・蓄電池・次世代エネルギー業界に携わるCxOが、
-                共に学び、知見を共有し、業界発展に寄与するための実践型コミュニティです。
-              </p>
-              <p className="text-white/90 text-center leading-relaxed">
-                急激な市場変化に対応し、業界の未来を共に創る場として、
-                クローズドな環境で率直に議論し、具体的なビジネス機会を生み出しています。
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h3 className="text-xl md:text-2xl font-bold mb-6 text-foreground">
+                市場環境の変化
+              </h3>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="text-lg font-semibold mb-2 text-foreground">FIP制度導入</h4>
+                  <p className="text-foreground/70 leading-relaxed">
+                    市場価格連動型の新制度への対応が急務となり、これまでのFIT制度とは異なる
+                    戦略的な事業運営が求められています。
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold mb-2 text-foreground">電力自由化の加速</h4>
+                  <p className="text-foreground/70 leading-relaxed">
+                    競争激化と新規参入による市場変革が進み、従来のビジネスモデルの見直しが
+                    不可避となっています。
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold mb-2 text-foreground">技術革新</h4>
+                  <p className="text-foreground/70 leading-relaxed">
+                    AI、蓄電池、次世代エネルギー技術の急速な発展により、新たな事業機会と
+                    同時に技術的な課題が生まれています。
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="relative h-[400px] rounded-lg overflow-hidden shadow-lg">
+              <Image
+                src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80"
+                alt="エネルギー業界の変革"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
         </motion.div>
 
-        {/* なぜ今必要か */}
+        {/* コミュニティの価値 - 段落中心 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-24 pb-24 border-b border-border"
         >
-          <div className="text-center mb-12">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              なぜ今、エナジーCxOが必要なのか
-            </h3>
-            <p className="text-muted-foreground">
-              エネルギー業界は、かつてない変革期を迎えています
+          <h3 className="text-xl md:text-2xl font-bold mb-8 text-foreground">
+            コミュニティの価値
+          </h3>
+
+          {/* 学び */}
+          <div className="mb-10 pb-10 border-b border-gray-200">
+            <h4 className="text-lg font-semibold mb-3 text-foreground flex items-center gap-2">
+              <span className="w-1.5 h-6 bg-primary rounded-full"></span>
+              学び
+            </h4>
+            <p className="text-foreground/70 leading-relaxed pl-4">
+              最新の市場動向、技術トレンド、規制変更について、実践的な知見を共有し合います。
+              年4回の定例セミナーでは、業界の最前線で活躍する経営者やエキスパートから
+              直接学び、自社の戦略に活かすことができます。
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-8">
-            {reasons.map((reason, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex items-start gap-4 p-6 bg-white rounded-xl border border-gray-200 hover:border-[#1a7fb8]/50 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="w-10 h-10 rounded-full bg-[#4db8e8]/20 flex items-center justify-center flex-shrink-0">
-                  <AlertCircle className="w-5 h-5 text-[#1a7fb8]" />
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold mb-2">
-                    {reason.title}
-                  </h4>
-                  <p className="text-muted-foreground text-sm">
-                    {reason.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+          {/* つながり */}
+          <div className="mb-10 pb-10 border-b border-gray-200">
+            <h4 className="text-lg font-semibold mb-3 text-foreground flex items-center gap-2">
+              <span className="w-1.5 h-6 bg-primary rounded-full"></span>
+              つながり
+            </h4>
+            <p className="text-foreground/70 leading-relaxed pl-4">
+              業界をリードする経営者同士の信頼関係を構築し、協業の可能性を探ります。
+              クローズドな環境だからこそ、率直な意見交換が可能になり、
+              単なる情報交換を超えた深い関係性が生まれます。
+            </p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto"
-          >
-            <div className="bg-gradient-to-r from-[#1a7fb8]/10 via-[#4db8e8]/10 to-[#1a7fb8]/10 border-l-4 border-[#1a7fb8] p-6 rounded-r-xl">
-              <p className="text-center leading-relaxed font-medium text-gray-800">
-                これらの変化に対応するには、一社単独での情報収集では限界があります。
-                業界のトップランナーが集い、率直に意見交換し、共に学ぶ場が必要です。
-              </p>
-            </div>
-          </motion.div>
+          {/* 価値創出 */}
+          <div>
+            <h4 className="text-lg font-semibold mb-3 text-foreground flex items-center gap-2">
+              <span className="w-1.5 h-6 bg-primary rounded-full"></span>
+              価値創出
+            </h4>
+            <p className="text-foreground/70 leading-relaxed pl-4">
+              得た知見と人脈を活かし、新たなビジネス機会を創出し、業界の発展に寄与します。
+              実際にコミュニティを通じて生まれた協業や新規事業の事例も数多くあります。
+            </p>
+          </div>
         </motion.div>
 
-        {/* 3つの価値 */}
-        <div className="mb-12">
-          <div className="text-center mb-12">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              エナジーCxOが提供する3つの価値
-            </h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {values.map((value, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card className="h-full neo-shadow hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-none">
-                  <CardContent className="p-8 text-center">
-                    <div className="w-16 h-16 gradient-blue-modern rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                      <value.icon className="w-8 h-8 text-white" />
-                    </div>
-                    <h3 className="text-2xl font-bold mb-4">{value.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {value.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+        {/* クローズドなコミュニティの意義 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-muted/30 rounded-lg p-8 md:p-12"
+        >
+          <h3 className="text-xl md:text-2xl font-bold mb-6 text-foreground">
+            クローズドなコミュニティの意義
+          </h3>
+          <p className="text-foreground/70 leading-relaxed mb-4">
+            エナジーCxOは、厳格な入会基準を設けたクローズドコミュニティです。
+            これは、参加者全員が安心して本音で語り合える環境を作るための重要な要素です。
+          </p>
+          <p className="text-foreground/70 leading-relaxed">
+            業界のCxO限定という同じ目線を持つメンバーだからこそ、
+            表には出せない経営課題や戦略的な議論が可能になり、
+            真に価値ある知見の交換が実現します。
+          </p>
+        </motion.div>
       </div>
     </section>
   );

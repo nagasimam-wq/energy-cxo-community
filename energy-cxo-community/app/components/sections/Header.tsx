@@ -19,32 +19,35 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="flex h-20 items-center justify-between">
           {/* ロゴ */}
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center">
             <img
               src="/cxo_logo.png"
               alt="エナジーCxO"
-              className="h-10 w-auto"
+              className="h-9 w-auto opacity-90 hover:opacity-100 transition-opacity"
             />
           </Link>
 
           {/* デスクトップナビゲーション */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium transition-colors hover:text-primary"
+                className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
               >
                 {item.name}
               </Link>
             ))}
-            <Button asChild variant="default" className="ml-4">
-              <Link href="/login">会員ログイン</Link>
-            </Button>
+            <Link
+              href="/login"
+              className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors ml-4 underline decoration-primary/0 hover:decoration-primary/100 underline-offset-4"
+            >
+              会員ログイン
+            </Link>
           </nav>
 
           {/* モバイルメニューボタン */}
