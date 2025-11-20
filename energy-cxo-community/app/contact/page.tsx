@@ -6,9 +6,73 @@ import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { Textarea } from "@/app/components/ui/textarea";
 import { Label } from "@/app/components/ui/label";
-import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, MessageCircle, CheckCircle2, AlertCircle } from "lucide-react";
+import { useState, useRef } from "react";
 
 export default function ContactPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [inquiryType, setInquiryType] = useState('');
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setErrorMessage('');
+
+    const formData = new FormData(e.currentTarget);
+
+    const data = {
+      name: formData.get('name'),
+      company: formData.get('company'),
+      position: formData.get('position'),
+      email: formData.get('email'),
+      phone: formData.get('phone') || '',
+      category: inquiryType,  // categoryに統一
+      message: formData.get('message'),
+      timestamp: new Date().toLocaleString('ja-JP'),
+    };
+
+    // デバッグ用：送信データを確認
+    console.log('========== 送信データ詳細 ==========');
+    console.log('送信データ全体:', data);
+    console.log('問い合わせ種別（state）:', inquiryType);
+    console.log('categoryの値:', data.category);
+    console.log('categoryの型:', typeof data.category);
+    console.log('JSONに変換:', JSON.stringify(data));
+    console.log('====================================');
+
+    try {
+      // no-corsモードで送信（CORSエラー回避）
+      await fetch('https://script.google.com/macros/s/AKfycbyf662LqE2byxONFHvSDDN_5frdALqEydRpXeg41bqfUagzFWdS6rfmpxvRT6IwEM9YqA/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'text/plain',
+        },
+        body: JSON.stringify(data),
+      });
+
+      // no-corsモードではレスポンスを読み取れないが、
+      // 送信自体は成功しているため、成功とみなす
+      setSubmitStatus('success');
+      formRef.current?.reset();
+      setInquiryType('');  // 種別もリセット
+
+      // 5秒後にステータスをリセット
+      setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 5000);
+    } catch (error) {
+      console.error('送信エラー:', error);
+      setSubmitStatus('error');
+      setErrorMessage('送信に失敗しました。もう一度お試しください。');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   const contactInfo = [
     {
       icon: Phone,
@@ -143,16 +207,43 @@ export default function ContactPage() {
             >
               <Card>
                 <CardContent className="p-8">
-                  <form className="space-y-6">
+                  <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+                    {/* 成功メッセージ */}
+                    {submitStatus === 'success' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3"
+                      >
+                        <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0" />
+                        <p className="text-green-800 text-sm">
+                          お問い合わせを受け付けました。ご連絡ありがとうございます。
+                        </p>
+                      </motion.div>
+                    )}
+
+                    {/* エラーメッセージ */}
+                    {submitStatus === 'error' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center gap-3"
+                      >
+                        <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
+                        <p className="text-red-800 text-sm">{errorMessage}</p>
+                      </motion.div>
+                    )}
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="name">お名前 *</Label>
-                        <Input id="name" placeholder="山田 太郎" required />
+                        <Input id="name" name="name" placeholder="山田 太郎" required />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="company">会社名 *</Label>
                         <Input
                           id="company"
+                          name="company"
                           placeholder="株式会社◯◯"
                           required
                         />
@@ -162,12 +253,13 @@ export default function ContactPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="position">役職 *</Label>
-                        <Input id="position" placeholder="代表取締役" required />
+                        <Input id="position" name="position" placeholder="代表取締役" required />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email">メールアドレス *</Label>
                         <Input
                           id="email"
+                          name="email"
                           type="email"
                           placeholder="example@email.com"
                           required
@@ -179,23 +271,27 @@ export default function ContactPage() {
                       <Label htmlFor="phone">電話番号</Label>
                       <Input
                         id="phone"
+                        name="phone"
                         type="tel"
                         placeholder="03-1234-5678"
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="type">お問い合わせ種別 *</Label>
+                      <Label htmlFor="category">お問い合わせ種別 *</Label>
                       <select
-                        id="type"
+                        id="category"
+                        name="category"
+                        value={inquiryType}
+                        onChange={(e) => setInquiryType(e.target.value)}
                         className="w-full px-3 py-2 border rounded-md"
                         required
                       >
                         <option value="">選択してください</option>
-                        <option value="join">入会について</option>
-                        <option value="event">イベントについて</option>
-                        <option value="activity">活動内容について</option>
-                        <option value="other">その他</option>
+                        <option value="入会について">入会について</option>
+                        <option value="イベントについて">イベントについて</option>
+                        <option value="活動内容について">活動内容について</option>
+                        <option value="その他">その他</option>
                       </select>
                     </div>
 
@@ -203,6 +299,7 @@ export default function ContactPage() {
                       <Label htmlFor="message">お問い合わせ内容 *</Label>
                       <Textarea
                         id="message"
+                        name="message"
                         placeholder="お問い合わせ内容をご記入ください"
                         rows={6}
                         required
@@ -210,8 +307,13 @@ export default function ContactPage() {
                     </div>
 
                     <div className="pt-4">
-                      <Button type="submit" size="lg" className="w-full">
-                        送信する
+                      <Button
+                        type="submit"
+                        size="lg"
+                        className="w-full"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? '送信中...' : '送信する'}
                       </Button>
                     </div>
 
